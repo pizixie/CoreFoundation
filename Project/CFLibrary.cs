@@ -102,6 +102,10 @@ namespace CoreFoundation
 
         [DllImport("CoreFoundation.dll", CallingConvention = CallingConvention.Cdecl)]
         public static  extern IntPtr CFStringGetCharacters(IntPtr handle, CFRange range, IntPtr buffer);
+
+        [DllImport("CoreFoundation.dll", CallingConvention = CallingConvention.Cdecl)]
+        public extern static IntPtr CFStringCreateWithCharacters(IntPtr alloc, IntPtr chars, int length);
+
         #endregion
         #region CFReadStream
         [DllImport("CoreFoundation.dll", CallingConvention = CallingConvention.Cdecl)]

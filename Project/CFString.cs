@@ -6,22 +6,36 @@ using System.Text;
 
 namespace CoreFoundation
 {
-   
+
     public sealed class CFString : CFType
     {
         public CFString()
-        {            
-        }             
+        {
+        }
         /// <summary>
         /// Creates an immutable string from a constant compile-time string
         /// </summary>
         /// <param name="str"></param>
-        public CFString(string str) 
+        public CFString(string str)
         {
-            base.typeRef = CFLibrary.__CFStringMakeConstantString(str);
+            //base.typeRef = CFLibrary.__CFStringMakeConstantString(str);
+
+            IntPtr handle;
+
+            unsafe
+            {
+                fixed (char* ptr = str)
+                {
+                    handle = CFLibrary.CFStringCreateWithCharacters(IntPtr.Zero, (IntPtr)ptr, str.Length);
+                }
+            }
+
+            base.typeRef = handle;
+
         }
-        public CFString(IntPtr myHandle) : base(myHandle)
-        {    
+        public CFString(IntPtr myHandle)
+            : base(myHandle)
+        {
         }
         /// <summary>
         /// Checks if the current object is a valid CFString object
@@ -47,8 +61,8 @@ namespace CoreFoundation
         }
 
         public static implicit operator CFString(string value)
-        {            
+        {
             return new CFString(value);
-        }            
-    }         
+        }
+    }
 }
