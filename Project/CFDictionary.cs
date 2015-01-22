@@ -21,7 +21,7 @@ namespace CoreFoundation
             IntPtr[] keyz = new IntPtr[keys.Length];  
             for (int i = 0; i < keys.Length; i++)
             {
-                keyz[i] = new CFString(keys[i]);                
+                keyz[i] = new CFString(keys[i]).Handle;                
             }
             CFDictionaryKeyCallBacks kcall = new CFDictionaryKeyCallBacks();
 
@@ -38,7 +38,7 @@ namespace CoreFoundation
         {
             try
             {
-                return new CFType(CFLibrary.CFDictionaryGetValue(base.typeRef, new CFString(value)));
+                return new CFType(CFLibrary.CFDictionaryGetValue(base.typeRef, new CFString(value).Handle));
             }
             catch (Exception ex)
             {

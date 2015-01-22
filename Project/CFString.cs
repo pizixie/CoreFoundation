@@ -13,13 +13,7 @@ namespace CoreFoundation
         {
         }
 
-        public IntPtr Handle
-        {
-            get
-            {
-                return base.typeRef;
-            }
-        }
+        
 
         /// <summary>
         /// Creates an immutable string from a constant compile-time string

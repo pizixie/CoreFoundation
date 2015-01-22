@@ -20,6 +20,14 @@ namespace CoreFoundation
 
         internal IntPtr typeRef;
 
+        public IntPtr Handle
+        {
+            get
+            {
+                return this.typeRef;
+            }
+        }
+
         public CFType() { }
         
         public CFType(IntPtr handle){this.typeRef = handle;}
@@ -120,13 +128,13 @@ namespace CoreFoundation
             }
             return null;
         }
-        public static implicit operator IntPtr(CFType value)
-        {
-            return value.typeRef;
-        }
-        public static implicit operator CFType(IntPtr value)
-        {
-            return new CFType(value);
-        }
+        //public static implicit operator IntPtr(CFType value)
+        //{
+        //    return value.typeRef;
+        //}
+        //public static implicit operator CFType(IntPtr value)
+        //{
+        //    return new CFType(value);
+        //}
     }
 }

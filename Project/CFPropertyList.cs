@@ -16,7 +16,7 @@ namespace CoreFoundation
         public CFPropertyList(string plistlocation) 
         {            
             IntPtr inputfilename;
-            inputfilename = new CFString(plistlocation);
+            inputfilename = new CFString(plistlocation).Handle;
 
             IntPtr ifile_IntPtr = CFLibrary.CFURLCreateWithFileSystemPath(IntPtr.Zero, inputfilename, 2, false);
             IntPtr ifile_CFReadStreamRef = CFLibrary.CFReadStreamCreateWithFile(IntPtr.Zero, ifile_IntPtr);
