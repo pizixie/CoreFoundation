@@ -12,6 +12,15 @@ namespace CoreFoundation
         public CFString()
         {
         }
+
+        public IntPtr Handle
+        {
+            get
+            {
+                return base.typeRef;
+            }
+        }
+
         /// <summary>
         /// Creates an immutable string from a constant compile-time string
         /// </summary>
@@ -45,15 +54,15 @@ namespace CoreFoundation
         {
             return CFLibrary.CFGetTypeID(typeRef) == _CFString;
         }
-        public static implicit operator CFString(IntPtr value)
-        {
-            return new CFString(value);
-        }
+        //public static implicit operator CFString(IntPtr value)
+        //{
+        //    return new CFString(value);
+        //}
 
-        public static implicit operator IntPtr(CFString value)
-        {
-            return value.typeRef;
-        }
+        //public static implicit operator IntPtr(CFString value)
+        //{
+        //    return value.typeRef;
+        //}
 
         public static implicit operator string(CFString value)
         {
