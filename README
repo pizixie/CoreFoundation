@@ -1,33 +1,7 @@
-This library is useful for those who are intending to use CFLite or CoreFoundation into their .NET projects. It has vital corefoundation DllImport declarations and some additional functions wrapped around the DllImports.
+# 支持中文
+增加此方法，用于支持UTF8,来源于MonoMac中的CoreFoundation模块。
 
-Remember to add this library as a reference to your project
-Remember to also add location of the corefoundation dll to the Environmental PATH variable either programatically or manually
-
-Usage example (C#)
-	
-    using CoreFoundation; 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-
-	   //Able to implicitly specify string value only for certain types		
-            CFString cfstring = "hello"; 			
-	   Console.WriteLine(cfstring.ToString());
-			
-	   //Reading plist files regardless of binary or xml format
-	   CFPropertyList plist = new CFPropertyList(PATH);
-	   Console.WriteLine(plist.ToString());
-			
-	   //Casting to CFPropertyList Objects(eg CFArray, CFDictionary...) and reading attributes
-	   CFDictionary dict = (CFDictionary)plist;
-	   CFType val = dict.GetValue(KEY_NAME);
-	   Console.WriteLine("Value of " + KEY_NAME + " is " + val.ToString());
-	   Console.WriteLine("This dictionary has " + dict.Length.ToString() + " key-value pairs");		
-        }
-    }
+public extern static IntPtr CFStringCreateWithCharacters(IntPtr alloc, IntPtr chars, int length);
 
 
-
-
-
+其他功能参考isnowrain/CoreFoundation
